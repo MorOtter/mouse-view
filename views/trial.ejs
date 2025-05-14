@@ -8,6 +8,55 @@
     
         <!-- Custom Styles -->
         <style>
+
+            /* Target the specific left and right panels */
+#dronesInfoContainer,
+#recommendations {
+    /* Frosted glass appearance - initial state */
+    background-color: rgba(50, 100, 200, 0.45); /* Blueish tint with transparency. Adjust (R,G,B,Alpha) as needed. */
+    backdrop-filter: blur(10px);                /* Blur effect for frostiness. Adjust px value for more/less blur. */
+    -webkit-backdrop-filter: blur(10px);        /* Safari browser compatibility for backdrop-filter. */
+
+    /* Border for a slightly more defined edge, optional */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+    border-radius: 8px; /* Optional: rounded corners for the panels */
+
+    /* Smooth transition for hover effects on the panel itself */
+    transition: background-color 0.35s ease-in-out, backdrop-filter 0.35s ease-in-out, border-color 0.35s ease-in-out;
+
+    /* Ensure existing padding and overflow are respected.
+       Your existing `padding: 10px;` and `overflow-y: auto;` are good. */
+}
+
+/* Style the content *within* the panels for the default obscured state */
+/* This targets all direct children (e.g., h4, div, button) of the panels */
+#dronesInfoContainer > *,
+#recommendations > * {
+    opacity: 0.3; /* Make content semi-transparent to appear obscured */
+    /* Optional: Add a slight blur to the content itself for a stronger effect */
+    /* filter: blur(1px); */
+    transition: opacity 0.35s ease-in-out, filter 0.35s ease-in-out; /* Smooth transition for content visibility */
+}
+
+/* --- Hover States --- */
+
+/* When the mouse hovers over either panel */
+#dronesInfoContainer:hover,
+#recommendations:hover {
+    /* Make the panel background clearer on hover */
+    background-color: rgba(70, 120, 220, 0.25); /* Lighter/less opaque blue on hover */
+    backdrop-filter: blur(3px);                 /* Reduce blur significantly or set to none (e.g., blur(0px) or none) */
+    -webkit-backdrop-filter: blur(3px);         /* Safari */
+    border-color: rgba(255, 255, 255, 0.3);     /* Slightly more visible border on hover */
+}
+
+/* When the mouse hovers over a panel, make its direct children fully visible and sharp */
+#dronesInfoContainer:hover > *,
+#recommendations:hover > * {
+    opacity: 1;  /* Content becomes fully opaque */
+    filter: none; /* Remove any blur from the content itself if you added one above */
+}
+
             .hidden {
                 display: none;
             }
