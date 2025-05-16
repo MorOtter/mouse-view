@@ -4,9 +4,9 @@ const session = require('express-session');
 const flash = require('express-flash');
 const methodOverride = require('method-override');
 const participantDetailsRoutes = require("./routes/participantDetailsRoutes.js");
-const informationRoutes = require("./routes/informationRoutes.js");
-const scalesRoutes = require("./routes/scalesRoutes.js");
-const trialRoutes = require("./routes/trialRoutes.js");
+//const informationRoutes = require("./routes/informationRoutes.js");
+//const scalesRoutes = require("./routes/scalesRoutes.js");
+//const trialRoutes = require("./routes/trialRoutes.js");
 const dbServices = require("./services/dbServices.js");
 
 const app = express();
