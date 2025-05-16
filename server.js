@@ -1,11 +1,20 @@
 const express = require('express');
-const path = require('path'); // You might need this later
+const path = require('path');
+const session = require('express-session'); // Add this back
 const dbServices = require("./services/dbServices.js");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false
+    })
+);
 
 app.use((req, res, next) => {
     console.log("Checking dbServices...");
