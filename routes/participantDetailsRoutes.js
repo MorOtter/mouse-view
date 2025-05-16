@@ -1,5 +1,5 @@
 const configureConditions = participantId => {
-  // ... (your existing configureConditions function)
+  
   const conditionNumber= participantId % 3;
   const groupNumber = parseInt(participantId) % 2;
   const censorGroupNumber = Math.floor(participantId / 4) % 2;
