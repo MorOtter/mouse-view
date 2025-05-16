@@ -1,36 +1,21 @@
 // imports
+
 const {Pool} = require('pg');
 const { connect_timeout, idleTimeoutMillis } = require('pg/lib/defaults');
 
-// Set up connection to DB based on environment
-let pool;
+// Set up connection to DB and CRUD ops
 
-// Check if we're in Heroku environment
-if (process.env.DATABASE_URL) {
-  // Running on Heroku - use the DATABASE_URL
-  pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    },
-    connect_timeout: 5,
-    idleTimeoutMillis: 30000
-  });
-} else {
-  // Local development - use local connection details
-  pool = new Pool({
+// local development uncomment below
+const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
   });
-}
 
-// Try to connect and log result
-pool.connect()
-  .then(() => console.log('Connected to PostgreSQL'))
-  .catch(err => console.error("Connection error", err.stack));
+
+//   hosted on heroku for my hosted version only
 
 const getLastTrialId = 
 async () => {
@@ -43,7 +28,27 @@ async () => {
     } finally {
         client.release();
     }
+
 }
+
+// const dns = require('dns');
+
+// // Force Node.js to prioritize IPv4 over IPv6
+// dns.setDefaultResultOrder('ipv4first');
+
+//  const pool = new Pool({
+//     connectionString: process.env.SUPABASE_DB_URL,
+//      ssl:{
+//          rejectUnauthorized: false
+//      },
+//      connect_timeout: 5,
+//      idleTimeoutMillis: 30000
+//  });
+  
+pool.connect()
+    .then(() => console.log('Connected to PostgreSQL'))
+    .catch(err => console.error("Connection error", err.stack));
+
 
 const insertParticipant = async (username, condition, groupName, censoredInfo, gender, age) => {
     const client = await pool.connect();
@@ -56,6 +61,7 @@ const insertParticipant = async (username, condition, groupName, censoredInfo, g
     } finally {
         client.release();
     }
+
 };
 
 const getNextId = async () => {
@@ -72,6 +78,7 @@ const getNextId = async () => {
     } finally {
         client.release();
     }
+
 };
 
 const insertTrial = async (participant, type, number, start, end, url) => {
@@ -99,6 +106,8 @@ const insertPacket = async (trial, user, advisor, accepted, time) => {
         client.release();
     }
 };
+
+
 
 const insertScale = async (participant, type, phase) => {
    
@@ -153,14 +162,24 @@ const insertCursorData = async (dataObject, trialId) => {
 
 const dbServices = {
     insertFeedback,
+
     insertItem,
+
     insertScale,
+
     insertPacket,
+
     insertTrial,
+
     insertParticipant,
+
     getNextId,
+
     getLastTrialId,
+    
     insertCursorData
+
 };
 
-module.exports = dbServices;
+
+module.exports =   dbServices;
