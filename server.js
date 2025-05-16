@@ -30,6 +30,7 @@ app.set("view engine", "ejs");
 
 // Static files
 app.use("/public", express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 // Session Configuration
 app.use(
@@ -58,12 +59,21 @@ app.use((req, res, next) => {
 
 
 
+
+
 // routes
 app.use('/participant', participantDetailsRoutes);
 app.use('/information', informationRoutes);
 app.use('/scales', scalesRoutes);
 app.use('/trial', trialRoutes);
 
+
+
+
+
+app.get('/', (req, res) => {
+    res.render('information')
+})
 
 const PORT = process.env.PORT || 3000;
 
