@@ -5,17 +5,12 @@ const { connect_timeout, idleTimeoutMillis } = require('pg/lib/defaults');
 
 // Set up connection to DB and CRUD ops
 
-// Supabase connection
+/// Supabase connection with shared pooler
 const pool = new Pool({
-    connectionString: "postgresql://postgres:Nig3l@supbl22ue@db.qxsjjkughdhjwgptbcih.supabase.co:5432/postgres",
+    connectionString: "postgresql://postgres:Nig3l@supbl22ue@aws-0-us-west-1.pooler.supabase.com:6543/postgres",
     ssl: {
         rejectUnauthorized: false
-    },
-    // Force IPv4
-    host: 'db.qxsjjkughdhjwgptbcih.supabase.co',
-    // Add connection timeout
-    connectionTimeoutMillis: 10000,
-    idleTimeoutMillis: 30000
+    }
 });
 
 const getLastTrialId =
