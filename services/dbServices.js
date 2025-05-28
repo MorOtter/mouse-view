@@ -5,7 +5,7 @@ const { connect_timeout, idleTimeoutMillis } = require('pg/lib/defaults');
 
 // Set up connection to DB and CRUD ops
 
-javascript// Supabase connection
+// Supabase connection
 const pool = new Pool({
     connectionString: "postgresql://postgres:Nig3l@supbl22ue@db.qxsjjkughdhjwgptbcih.supabase.co:5432/postgres",
     ssl:{
