@@ -5,9 +5,9 @@ const { connect_timeout, idleTimeoutMillis } = require('pg/lib/defaults');
 
 // Set up connection to DB and CRUD ops
 
-// Supabase connection with transaction pooler (new password)
+// Supabase connection with session pooler
 const pool = new Pool({
-    connectionString: "postgresql://postgres.qxsjjkughdhjwgptbcih:bUxfq6cVNjekjAN9@aws-0-eu-west-2.pooler.supabase.com:6543/postgres",
+    connectionString: "postgresql://postgres.qxsjjkughdhjwgptbcih:bUxfq6cVNjekjAN9@aws-0-eu-west-2.pooler.supabase.com:5432/postgres",
     ssl: {
         rejectUnauthorized: false
     }
