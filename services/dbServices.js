@@ -5,19 +5,15 @@ const { connect_timeout, idleTimeoutMillis } = require('pg/lib/defaults');
 
 // Set up connection to DB and CRUD ops
 
-// local development uncomment below
+javascript// Supabase connection
 const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-  });
+    connectionString: "postgresql://postgres:Nig3l@supbl22ue@db.qxsjjkughdhjwgptbcih.supabase.co:5432/postgres",
+    ssl:{
+        rejectUnauthorized: false
+    }
+});
 
-
-//   hosted on heroku for my hosted version only
-
-const getLastTrialId = 
+const getLastTrialId =
 async () => {
     const client = await pool.connect();
     try {
