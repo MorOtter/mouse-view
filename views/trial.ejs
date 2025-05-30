@@ -95,33 +95,33 @@
     </nav>
 
     <section class="panels">
-        <!-- Left Panel -->
-        <aside id="dronesInfoContainer">
-            <!-- Connection Information Section -->
-            <section class="parameters">
-                <h4>This is the recommendation that you have made:</h4>
-                <div class="connection-info">
-                    <div class="secondary-info">
-                        <h4 id="info-checksum" class="hidden">Packet Size: Unavailable</h4>
-                        <h4 id="info-time" class="hidden">Connection Time: Unavailable</h4>
-                        <h4 id="info-ip" class="hidden">IP Address: Unavailable</h4>
-                        <h4 id="info-country" class="hidden">Country: Unavailable</h4>
-                    </div>
-                    <h4 id="info-classification">Unclassified</h4>
-                </div>
-            </section>
+<!-- Left Panel -->
+<aside id="dronesInfoContainer" class="frosted-container">
+    <div class="frosted-overlay"></div>
+    <!-- Connection Information Section -->
+    <section class="parameters">
+        <h4>This is the recommendation that you have made:</h4>
+        <div class="connection-info">
+            <div class="secondary-info">
+                <h4 id="info-checksum" class="hidden">Packet Size: Unavailable</h4>
+                <h4 id="info-time" class="hidden">Connection Time: Unavailable</h4>
+                <h4 id="info-ip" class="hidden">IP Address: Unavailable</h4>
+                <h4 id="info-country" class="hidden">Country: Unavailable</h4>
+            </div>
+            <h4 id="info-classification">Unclassified</h4>
+        </div>
+    </section>
 
-            <!-- Drone Classification Buttons -->
-            <section class="droneButtons">
-                <h4>Classification:</h4>
-                <div>
-                    <button id="trusted" type="button">Trusted</button>
-                    <button id="suspect" type="button">Suspect</button>
-                    <button id="hostile" type="button">Hostile</button>
-                </div>
-            </section>
-        </aside>
-
+    <!-- Drone Classification Buttons -->
+    <section class="droneButtons">
+        <h4>Classification:</h4>
+        <div>
+            <button id="trusted" type="button">Trusted</button>
+            <button id="suspect" type="button">Suspect</button>
+            <button id="hostile" type="button">Hostile</button>
+        </div>
+    </section>
+</aside>
         <!-- Middle Panel -->
         <div id="game-container">
             <div id="primary-info">
@@ -135,17 +135,17 @@
         </div>
 
         <!-- Right Panel (Recommendations) -->
-        <aside id="recommendations">
-            <div class="h-50 d-flex flex-column justify-content-center">
-                <h4 id="conditionText"></h4>
-                <h4 id="condition"></h4>
-                <h5 id="advice"></h5>
-            </div>
-            <div class="h-50 d-flex flex-column justify-content-center">
-                <button type="submit" id="accept">Accept Recommendation</button>
-            </div>
-        </aside>
-    </section>
+<aside id="recommendations" class="frosted-container">
+    <div class="frosted-overlay"></div>
+    <div class="h-50 d-flex flex-column justify-content-center">
+        <h4 id="conditionText"></h4>
+        <h4 id="condition"></h4>
+        <h5 id="advice"></h5>
+    </div>
+    <div class="h-50 d-flex flex-column justify-content-center">
+        <button type="submit" id="accept">Accept Recommendation</button>
+    </div>
+</aside>
 
     <!-- Additional Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
