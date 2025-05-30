@@ -197,7 +197,7 @@ const dbServices = {
 
     getLastTrialId,
     
-    insertCursorData
+    insertCursorData,
 
     insertCursorDataBatch
 
