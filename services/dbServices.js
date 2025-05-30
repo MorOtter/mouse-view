@@ -155,6 +155,31 @@ const insertCursorData = async (dataObject, trialId) => {
     }
 }
 
+const insertCursorDataBatch = async (dataArray, trialId) => {
+    const client = await pool.connect();
+    console.log("Batch inserting cursor data");
+    try {
+        // Build a single query with multiple values
+        const values = [];
+        const placeholders = [];
+        
+        dataArray.forEach((dataObject, index) => {
+            const baseIndex = index * 5;
+            const {x, y, time, event} = dataObject;
+            values.push(x, y, time, event, trialId);
+            placeholders.push(`($${baseIndex + 1}, $${baseIndex + 2}, $${baseIndex + 3}, $${baseIndex + 4}, $${baseIndex + 5})`);
+        });
+        
+        const query = `INSERT INTO cursor_data (x, y, time, event, trial_id) VALUES ${placeholders.join(', ')}`;
+        const result = await client.query(query, values);
+        
+        console.log(`Inserted ${dataArray.length} cursor data points in one batch`);
+    } finally {
+        console.log("Batch cursor data insert finished");
+        client.release();
+    }
+}
+
 const dbServices = {
     insertFeedback,
 
@@ -173,6 +198,8 @@ const dbServices = {
     getLastTrialId,
     
     insertCursorData
+
+    insertCursorDataBatch
 
 };
 

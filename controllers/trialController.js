@@ -102,9 +102,8 @@ exports.addCursorData = async (req, res, next) => {
         console.log(`type of data for decompressedData = ${typeof decompressedData}`);
         const trialId = await req.dbServices.getLastTrialId();
 
-        for( let cursorData of decompressedData) {
-            await req.dbServices.insertCursorData(cursorData, trialId)
-        }
+        // Insert all cursor data as a single batch instead of individual inserts
+        await req.dbServices.insertCursorDataBatch(decompressedData, trialId);
 
         res.status(200).json({message: "cursor data stored"});
     } catch (err) {
